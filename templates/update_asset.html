@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update_Asset</title>
+</head>
+<body>
+    <h1>Update Asset</h1>
+
+    <form method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ asset.name }}" required>
+        <label for="type">Type:</label>
+        <select id="type" name="type" required>
+            <option value="PC">PC</option>
+            <option value="Laptop">Laptop</option>
+            <option value="Phone">Phone</option>
+            <option value="Server">Server</option>
+            <option value="Misc">Misc</option>  
+        </select>
+        <label for="user">User:</label>
+        <input type="text" id="user" name="user" value="{{ asset.user }}" required>
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department" value="{{ asset.department }}" required>
+        <label for="serial_number">Serial Number:</label>
+        <input type="text" id="serial_number" name="serial_number" value="{{ asset.serial_number }}" required>
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+            <option value="Assigned">Assigned</option>
+            <option value="Available">Available</option>
+            <option value="In Repair">Out of Service</option>
+            <option value="Retired">Retired</option>
+            <option value="N/A">N/A</option>
+        </select>
+        <button type="submit">Update Asset</button>
+    </form>
+    <nav>
+        <p><a href="/assets">View Assets Here</a></p>
+    </nav>
+</body>
+</html>

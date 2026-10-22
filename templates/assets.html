@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assets</title>
+</head>
+<body>
+    <h1>Assets</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/assets">Assets</a></li>
+            <li><a href="/reports">Reports</a></li>
+        </ul>
+        <li><a href="/add_asset">Add Asset</a></li>
+    </nav>
+    <table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Asset Name</th>
+        <th>Type</th>
+        <th>User</th>
+        <th>Department</th>
+        <th>Serial Number</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for asset in assets %}
+    <tr>
+        <td>{{ asset.id }}</td>
+        <td>{{ asset.name }}</td>
+        <td>{{ asset.type }}</td>
+        <td>{{ asset.user }}</td>
+        <td>{{ asset.department }}</td>
+        <td>{{ asset.serial_number }}</td>
+        <td>{{ asset.status }}</td>
+        <td>
+            <a href="/update_asset/{{ asset.id }}">Update</a>
+            |
+            <a href="/delete_asset/{{ asset.id }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
