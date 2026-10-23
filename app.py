@@ -1,8 +1,12 @@
-from flask import Flask, render_template, request, redirect
+import csv
+
+from flask import Flask, flash, render_template, request, redirect
 
 from database import add_asset, create_database, get_asset_count, get_assets, delete_asset, get_asset_by_id, update_asset
 
 app = Flask(__name__)
+
+app.config["SECRET_KEY"] = "asset-tracker-dev-key"
 
 create_database()
 
@@ -58,10 +62,24 @@ def update_asset_route(asset_id):
     asset = get_asset_by_id(asset_id)
     return render_template("update_asset.html", asset=asset)
 
+@app.route("/export_assets")
+def export_csv():
+    assets = get_assets()
+
+    with open("assets_export.csv", "w", newline="") as file:
+        writer = csv.writer(file)
+
+        writer.writerow(["ID", "Name", "Type", "User", "Department", "Serial Number", "Status"])
+        for asset in assets:
+            writer.writerow([asset["id"], asset["name"], asset["type"], asset["user"], asset["department"], asset["serial_number"], asset["status"]])
+        flash("Assets exported successfully!", "success")
+        return redirect("/assets")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
 
 
+
+#To Do List:
 #Add search function within home page 
-#Start turning type into dropdowns - server, pc, laptop, etc
